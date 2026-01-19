@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+:root {
+  /* Background & Text */
+  --background: rgba(16, 16, 18, 0.98);
+  --foreground: #e7e7e7;
+
+  /* Primary - Deep Royal Purple */
+  --primary: #4169e1;
+
+  /* Secondary - Warm Gold (Subtle Accent) */
+  --secondary: rgba(255, 255, 255, 0.05);
+
+  /* Borders */
+  --border-primary: rgba(107, 91, 149, 0.25);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-border-primary: var(--border-primary);
+  --color-border-subtle: var(--border-subtle);
+}
+body {
+  background: var(--background);
+  color: var(--foreground);
+}

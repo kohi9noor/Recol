@@ -1,0 +1,33 @@
+{
+  "name": "recol",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Keyboard-first bookmarking for instant save and instant recall.",
+  "scripts": {
+    "dev": "npx vite",
+    "build": "tsc -b && npx vite build",
+    "preview": "npx vite preview"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.18",
+    "axios": "^1.13.2",
+    "dexie": "^4.2.1",
+    "fuse.js": "^7.1.0",
+    "lucide-react": "^0.562.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^4.1.18",
+    "use-debounce": "^10.1.0"
+  },
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^2.0.3",
+    "@types/chrome": "^0.1.1",
+    "@types/node": "^24.0.15",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.7.0",
+    "typescript": "~5.8.3",
+    "vite": "^7.0.5",
+    "vite-plugin-zip-pack": "^1.2.4"
+  }
+}

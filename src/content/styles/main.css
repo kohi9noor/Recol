@@ -1,0 +1,617 @@
+@import "tailwindcss";
+
+:host {
+  /* === Main Colors === */
+  --background: rgba(16, 16, 18, 0.98);
+  --background-glass: rgba(20, 20, 24, 0.4);
+  --background-glass-hover: rgba(30, 30, 36, 0.5);
+
+  --foreground: #e7e7e7;
+  --foreground-secondary: rgba(255, 255, 255, 0.8);
+  --foreground-muted: rgba(255, 255, 255, 0.6);
+
+  --secondary: rgba(255, 255, 255, 0.05);
+  --muted: rgba(255, 255, 255, 0.3);
+  --muted-background: rgba(255, 255, 255, 0.03);
+
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.12);
+  --border-focus: rgba(107, 91, 149, 0.25);
+
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
+
+  color-scheme: dark;
+  font-family:
+    inter,
+    system-ui,
+    -apple-system,
+    sans-serif;
+
+  /* === Custom Scrollbar (Sleek Design) === */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.extension {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: auto;
+  cursor: pointer;
+
+  /* Dark Glassmorphism */
+  background: var(--background-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  /* Borders & Shadow */
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow:
+    var(--shadow-md),
+    inset 0 1px 0 var(--glass-highlight);
+
+  /* Smooth transitions */
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.extension:hover {
+  background: var(--background-glass-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-1px);
+  box-shadow:
+    var(--shadow-lg),
+    inset 0 1px 0 var(--glass-highlight-hover);
+}
+
+.extension:active {
+  transform: translateY(0);
+}
+
+.extension svg {
+  width: 20px;
+  height: 20px;
+  color: var(--foreground-secondary);
+  transition: color 0.2s ease;
+}
+
+.extension:hover svg {
+  color: var(--foreground);
+}
+
+.extension-popup {
+  /* Fixed positioning with explicit dimensions */
+  position: fixed !important;
+  top: 15vw !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 60vw !important;
+  margin-inline: auto !important;
+  min-height: fit-content !important;
+
+  /* Reset any inherited styles from host page */
+  box-sizing: border-box !important;
+  display: block !important;
+  pointer-events: auto !important;
+
+  /* Ensure proper stacking */
+  z-index: 2147483647 !important;
+
+  /* Prevent host page styles from interfering */
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif !important;
+  line-height: normal !important;
+  letter-spacing: normal !important;
+}
+.search-input {
+  width: 100%;
+  height: 56px;
+  padding: 0 20px;
+  font-size: 20px;
+  color: #ffffff;
+  background: rgba(20, 20, 24, 0.7);
+  border-radius: 18px;
+  outline: none;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.search-input:focus {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.save-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483646;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.save-dialog {
+  width: 280px;
+  padding: 16px;
+  border-radius: 20px;
+  height: 326px;
+  background: rgba(20, 20, 24, 0.8);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+
+  z-index: 9999999;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+
+  animation: fadeIn 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.save-dialog-header {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--foreground);
+  padding: 0 4px;
+  letter-spacing: -0.2px;
+}
+
+.save-dialog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 240px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.save-dialog-item-container {
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  position: relative;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--foreground-secondary);
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.save-dialog-item-container:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--foreground);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.save-dialog-item-container.active {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--foreground);
+  font-weight: 500;
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.collection-item-actions {
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.save-dialog-item-container:hover .collection-item-actions,
+.save-dialog-item-container.active .collection-item-actions {
+  opacity: 1;
+}
+
+.collection-action-btn {
+  all: unset;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: var(--foreground-muted);
+  transition: all 0.12s ease;
+}
+
+.collection-action-btn:hover {
+  background: var(--secondary);
+  color: var(--foreground);
+}
+
+.collection-action-btn.delete:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.collection-rename-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 4px;
+}
+
+.collection-rename-input-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+
+.collection-rename-input {
+  all: unset;
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 13px;
+  color: var(--foreground);
+  transition: all 0.2s ease;
+}
+
+.collection-rename-input.has-error {
+  border-color: rgba(239, 68, 68, 0.5);
+  background: rgba(239, 68, 68, 0.03);
+}
+
+.collection-rename-error {
+  font-size: 10px;
+  color: #ef4444;
+  padding-left: 2px;
+  font-weight: 500;
+  animation: fadeIn 0.15s ease-out;
+}
+
+.rename-action-btn {
+  all: unset;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.rename-action-btn.save {
+  color: #10b981;
+}
+.rename-action-btn.cancel {
+  color: var(--foreground-muted);
+}
+
+.delete-confirmation-overlay {
+  position: absolute;
+  inset: 2px;
+  background: rgba(18, 18, 22, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 0 12px;
+  border: 1px solid rgba(239, 68, 68, 0.15);
+  animation: modalPop 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.delete-confirmation-content p {
+  font-size: 11px;
+  color: var(--foreground-secondary);
+  margin-bottom: 10px;
+  text-align: center;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.delete-confirmation-actions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.delete-confirmation-actions button {
+  all: unset;
+  padding: 5px 14px;
+  border-radius: 7px;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.delete-confirmation-actions .confirm-btn {
+  background: #dc2626;
+  color: white;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.2);
+}
+
+.delete-confirmation-actions .confirm-btn:hover {
+  background: #ef4444;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.delete-confirmation-actions .cancel-btn {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--foreground-muted);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.delete-confirmation-actions .cancel-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--foreground);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+@keyframes modalPop {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.save-dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 4px;
+}
+
+.save-dialog-cancel {
+  all: unset;
+  font-size: 12px;
+  color: var(--foreground-muted);
+  cursor: pointer;
+}
+
+.save-dialog-cancel:hover {
+  color: var(--foreground-secondary);
+}
+
+.save-dialog-add-toggle {
+  all: unset;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--foreground-muted);
+  transition: all 0.12s ease;
+  margin-top: 4px;
+}
+
+.save-dialog-add-toggle:hover {
+  background: var(--secondary);
+  color: var(--foreground-secondary);
+}
+
+.save-dialog-add-input-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  background: var(--background-glass);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-top: 4px;
+  transition: border-color 0.12s ease;
+}
+
+.save-dialog-add-input-container.has-error {
+  border-color: rgba(239, 68, 68, 0.5); /* Red-500 */
+}
+
+.save-dialog-add-error {
+  font-size: 11px;
+  color: #ef4444;
+  padding-left: 8px;
+  margin-top: 2px;
+  animation: fadeIn 0.12s ease-out;
+}
+
+.save-dialog-add-input {
+  all: unset;
+  flex: 1;
+  font-size: 13px;
+  color: var(--foreground);
+  padding: 4px;
+}
+
+.save-dialog-add-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.save-dialog-add-action-btn {
+  all: unset;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.save-dialog-add-action-btn.save {
+  color: #10b981; /* Emerald-500 */
+}
+
+.save-dialog-add-action-btn.save:hover {
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.save-dialog-add-action-btn.cancel {
+  color: var(--foreground-muted);
+}
+
+.save-dialog-add-action-btn.cancel:hover {
+  background: var(--secondary);
+}
+
+.login-button {
+  all: unset;
+  padding: 12px 24px;
+  border-radius: 12px;
+  background: var(--foreground);
+  color: black;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-md);
+}
+
+.login-button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+  opacity: 0.95;
+}
+
+.search-results {
+  margin-top: 12px;
+  max-height: 480px;
+  overflow-y: auto;
+  background: rgba(20, 20, 24, 0.8);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.search-result-item {
+  padding: 14px 18px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-item:hover,
+.search-result-item.active {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.collection-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--foreground-muted);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.search-result-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.search-result-item:hover .search-result-actions,
+.search-result-item.active .search-result-actions {
+  opacity: 1;
+}
+
+.delete-btn {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  color: var(--foreground-muted);
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.search-result-item.active {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
