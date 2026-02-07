@@ -1,20 +1,18 @@
-# Download & Install
-
-To get started with Recol, follow these simple steps:
+# Get the Extension
 
 ### 1. Download
 
-Download the latest version here: [crx-recol-1.0.0.zip](release/crx-recol-1.0.0.zip)
+<a href="release/crx-recol-1.0.0.zip" download>Click here to download the zip file</a>
 
 ### 2. Unzip
 
-Locate the downloaded file on your computer and unzip it. This will create a folder containing the extension files.
+Once it's downloaded, find the file `crx-recol-1.0.0.zip` and unzip it. This will give you a folder with everything the extension needs.
 
-### 3. Install in Chrome
+### 3. Load it into Chrome
 
-1. Open your Chrome browser and go to `chrome://extensions/` by typing it into the address bar.
-2. In the top right corner, toggle the **Developer mode** switch to **On**.
-3. Click the **Load unpacked** button that appears in the top left.
+1. Open Chrome and type `chrome://extensions` in the address bar.
+2. Turn on **Developer mode** (the switch in the top right).
+3. Click **Load unpacked** (top left).
 4. Select the folder you just unzipped.
 
-That's it! Recol should now be visible in your extensions list and ready to use. Use the shortcuts listed in the [README.md](README.md) to start saving and searching links.
+That's it. You're ready to go. You can find your shortcuts in the [main guide](README.md).

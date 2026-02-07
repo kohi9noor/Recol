@@ -1,27 +1,25 @@
 # Recol
 
-Recol is a simple keyboard-focused tool to help you save and find your links without breaking your flow. It's built for people who find browser bookmarks slow or messy.
+Recol is a simple tool to save and find links using just your keyboard. If you're tired of browser bookmarks being slow or requiring too much clicking, this is for you.
 
-## How it works
+### What you can do:
 
-- **Save instantly**: Tap a shortcut and save what you're looking at. No clicking around.
-- **Find everything**: Search through your saved links with a fast search that actually understands what you're looking for.
-- **Stay in the zone**: Designed to be used entirely with your keyboard so you don't have to reach for the mouse.
+- **Save links fast**: Use a shortcut to save whatever page you're on instantly.
+- **Find things quickly**: A quick search that actually helps you find what you saved.
+- **No mouse needed**: Everything works with shortcuts so you can stay focused.
 
-## Shortcuts
+### The Shortcuts:
 
-- `Shift + CMD + S` (Mac) / `Shift + CTRL + S` (Windows): Save the current page.
-- `Shift + CMD + L` (Mac) / `Shift + CTRL + L` (Windows): Search your links.
-- `Arrows` & `Enter`: Move through results and open them.
+- **Save page**: `Shift + CMD + S` (Mac) or `Shift + CTRL + S` (Windows)
+- **Search links**: `Shift + CMD + L` (Mac) or `Shift + CTRL + L` (Windows)
+- **Navigate**: Use the arrow keys to move and `Enter` to open.
 
-## Setup
+### Getting Started:
 
-1. [Download](download.md) the latest version.
-2. Unzip the file.
+1. [Download the latest version here](download.md).
+2. Unzip the folder.
 3. Open Chrome and go to `chrome://extensions`.
-4. Turn on **Developer mode** (top right).
-5. Click **Load unpacked** and select the folder you just unzipped.
+4. Turn on **Developer mode** in the top right.
+5. Click **Load unpacked** and pick the folder you unzipped.
 
----
-
-For more details on how to get started, see [download.md](download.md).
+That's it. Simple.
