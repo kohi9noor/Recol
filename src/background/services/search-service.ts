@@ -2,6 +2,11 @@ import { db } from "@/lib/db";
 import Fuse from "fuse.js";
 
 let fuseInstance: Fuse<any> | null = null;
+let searchMetrics = {
+  totalSearches: 0,
+  totalTime: 0,
+  lastSearchTime: 0,
+};
 
 export async function getFuseIndex() {
   if (fuseInstance) return fuseInstance;
@@ -31,6 +36,25 @@ export async function refreshIndex() {
 }
 
 export async function searchLinks(query: string) {
+  const startTime = performance.now();
   const fuse = await getFuseIndex();
-  return fuse.search(query, { limit: 20 }).map((r) => r.item);
+  const results = fuse.search(query, { limit: 20 }).map((r) => r.item);
+  const endTime = performance.now();
+
+  const searchTime = endTime - startTime;
+  searchMetrics.totalSearches++;
+  searchMetrics.totalTime += searchTime;
+  searchMetrics.lastSearchTime = searchTime;
+
+  return results;
+}
+
+export function getSearchMetrics() {
+  return {
+    ...searchMetrics,
+    averageTime:
+      searchMetrics.totalSearches > 0
+        ? searchMetrics.totalTime / searchMetrics.totalSearches
+        : 0,
+  };
 }

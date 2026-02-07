@@ -45,6 +45,7 @@ export function AddCollectionForm({
           onChange={(e) => onChange(e.target.value)}
           onKeyDown={(e) => {
             e.stopPropagation();
+            console.log("Key pressed in AddCollectionForm input:", e.key);
             if (e.key === "Enter") onSave();
           }}
         />

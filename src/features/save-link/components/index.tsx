@@ -59,6 +59,14 @@ export function SaveDialog({
       const isAddInput = target.classList.contains("save-dialog-add-input");
       const isSecondaryInput = isRenameInput || isAddInput;
 
+      /**
+       *  Allow Enter key in rename/add input without triggering global actions like moving selection or closing dialog
+       *  this is important for user experience as it lets users quickly rename collections or add new ones without extra clicks
+       */
+      if (isSecondaryInput && e.key === "Enter") {
+        return;
+      }
+
       if (["Escape", "ArrowDown", "ArrowUp", "Enter"].includes(e.key)) {
         e.stopImmediatePropagation();
       }

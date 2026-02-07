@@ -130,14 +130,12 @@ const Search = ({ open, onClose }: SearchProps) => {
         return;
       }
 
-      if (
-        (e.metaKey || e.ctrlKey) &&
-        (e.key === "Backspace" || e.key === "Delete")
-      ) {
+      if (e.key === "Backspace" || e.key === "Delete") {
         if (displayedResults.length === 0) return;
         e.preventDefault();
         const selected = displayedResults[activeIndexRef.current];
         if (selected) {
+          console.log("Deleting link with id:", selected.id);
           deleteLink(selected.id);
         }
         return;
@@ -167,12 +165,9 @@ const Search = ({ open, onClose }: SearchProps) => {
   }
 
   function handleInputKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
-    // Stop character keys ('k', 'f', etc.) from bubbling out to host sites like YouTube
     if (e.key.length === 1) {
       e.stopPropagation();
     }
-
-    // System keys are handled by the global window capture listener
   }
 
   return (
