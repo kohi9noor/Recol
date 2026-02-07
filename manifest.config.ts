@@ -20,15 +20,7 @@ export default defineManifest({
     service_worker: "src/background/main.ts",
     type: "module",
   },
-  permissions: [
-    "sidePanel",
-    "contentSettings",
-    "storage",
-    "commands",
-    "tabs",
-    "cookies",
-    "alarms",
-  ],
+  permissions: ["storage", "commands", "tabs"],
   host_permissions: ["http://localhost:4000/*", "http://localhost:3000/*"],
   externally_connectable: {
     matches: ["http://localhost:3000/*"],
