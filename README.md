@@ -1,6 +1,6 @@
 # Recol
 
-Recol is a simple tool to save and find links using just your keyboard. If you're tired of browser bookmarks being slow or requiring too much clicking, this is for you.
+Recol is a simple browser extension to save and find links using just your keyboard. If you're tired of browser bookmarks being slow or requiring too much clicking, this is for you.
 
 ### What you can do:
 
