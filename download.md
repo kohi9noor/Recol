@@ -2,7 +2,7 @@
 
 ### 1. Download
 
-[Click here to download the zip file](release/crx-recol-1.0.0.zip?raw=true)
+[Click here to download the zip file](https://raw.githubusercontent.com/kohi9noor/Recol/master/release/crx-recol-1.0.0.zip)
 
 ### 2. Unzip
 
