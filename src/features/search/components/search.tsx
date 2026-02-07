@@ -82,20 +82,14 @@ const Search = ({ open, onClose }: SearchProps) => {
       );
       if (!isFromUs) return;
 
-      if (
-        [
-          "Escape",
-          "ArrowDown",
-          "ArrowUp",
-          "Enter",
-          "Backspace",
-          "Delete",
-        ].includes(e.key)
-      ) {
-        e.stopImmediatePropagation();
-      }
+      const isInput = path.some(
+        (target) =>
+          target instanceof HTMLInputElement ||
+          (target as HTMLElement).tagName === "INPUT",
+      );
 
       if (e.key === "Escape") {
+        e.stopImmediatePropagation();
         e.preventDefault();
         onClose();
         return;
@@ -103,6 +97,7 @@ const Search = ({ open, onClose }: SearchProps) => {
 
       if (e.key === "ArrowDown") {
         if (displayedResults.length === 0) return;
+        e.stopImmediatePropagation();
         e.preventDefault();
         const next = (activeIndexRef.current + 1) % displayedResults.length;
         safeSetIndx(next);
@@ -111,6 +106,7 @@ const Search = ({ open, onClose }: SearchProps) => {
 
       if (e.key === "ArrowUp") {
         if (displayedResults.length === 0) return;
+        e.stopImmediatePropagation();
         e.preventDefault();
         const next =
           (activeIndexRef.current - 1 + displayedResults.length) %
@@ -121,6 +117,7 @@ const Search = ({ open, onClose }: SearchProps) => {
 
       if (e.key === "Enter") {
         if (displayedResults.length === 0) return;
+        e.stopImmediatePropagation();
         e.preventDefault();
         const selected = displayedResults[activeIndexRef.current];
         if (selected) {
@@ -130,8 +127,12 @@ const Search = ({ open, onClose }: SearchProps) => {
         return;
       }
 
-      if (e.key === "Backspace" || e.key === "Delete") {
+      if (e.key === "Delete") {
+        if (isInput) return;
+
         if (displayedResults.length === 0) return;
+
+        e.stopImmediatePropagation();
         e.preventDefault();
         const selected = displayedResults[activeIndexRef.current];
         if (selected) {
@@ -151,7 +152,7 @@ const Search = ({ open, onClose }: SearchProps) => {
       window.removeEventListener("mousedown", handleMouseDown, true);
       window.removeEventListener("keydown", handleKeyDown, true);
     };
-  }, [open, onClose, displayedResults.length]);
+  }, [open, onClose, displayedResults]);
 
   useEffect(() => {
     safeSetIndx(0);
