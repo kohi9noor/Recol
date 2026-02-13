@@ -1,0 +1,61 @@
+{
+  "../../../../../../@crx/manifest": {
+    "file": "assets/crx-manifest.js-uzj8EqxZ.js",
+    "name": "crx-manifest.js",
+    "src": "../../../../../../@crx/manifest",
+    "isEntry": true
+  },
+  "_client-BjeeCjb0.js": {
+    "file": "assets/client-BjeeCjb0.js",
+    "name": "client"
+  },
+  "_events-BL2MARUn.js": {
+    "file": "assets/events-BL2MARUn.js",
+    "name": "events",
+    "imports": [
+      "_messages-CFBAHGQi.js"
+    ]
+  },
+  "_index.tsx-loader-DKoNeU9f.js": {
+    "file": "assets/index.tsx-loader-DKoNeU9f.js",
+    "src": "_index.tsx-loader-DKoNeU9f.js"
+  },
+  "_messages-CFBAHGQi.js": {
+    "file": "assets/messages-CFBAHGQi.js",
+    "name": "messages"
+  },
+  "src/background/main.ts": {
+    "file": "assets/main.ts-BQO6sE3Q.js",
+    "name": "main.ts",
+    "src": "src/background/main.ts",
+    "isEntry": true,
+    "imports": [
+      "_events-BL2MARUn.js",
+      "_messages-CFBAHGQi.js"
+    ]
+  },
+  "src/content/index.tsx": {
+    "file": "assets/index.tsx-BWoweP9L.js",
+    "name": "index.tsx",
+    "src": "src/content/index.tsx",
+    "isEntry": true,
+    "imports": [
+      "_client-BjeeCjb0.js",
+      "_events-BL2MARUn.js",
+      "_messages-CFBAHGQi.js"
+    ]
+  },
+  "src/popup/index.html": {
+    "file": "assets/index.html-6vaQPCfA.js",
+    "name": "index.html",
+    "src": "src/popup/index.html",
+    "isEntry": true,
+    "imports": [
+      "_client-BjeeCjb0.js",
+      "_messages-CFBAHGQi.js"
+    ],
+    "css": [
+      "assets/index-Dkh-5xWz.css"
+    ]
+  }
+}
